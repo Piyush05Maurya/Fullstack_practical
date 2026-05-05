@@ -1,0 +1,48 @@
+<%- include('layout', { body: `
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2>📚 All Reviews</h2>
+  <a class="btn btn-success" href="/review/new">+ Add New Review</a>
+</div>
+<% if (reviews.length === 0) { %>
+  <div class="alert alert-info" role="alert">
+    <strong>No reviews yet!</strong> Start by <a href="/review/new" class="alert-link">creating your first review</a>.
+  </div>
+<% } else { %>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Book Title</th>
+          <th scope="col">Author</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Reviewer</th>
+          <th scope="col">Date</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% reviews.forEach(review => { %>
+          <tr>
+            <td>
+              <a href="/reviews/<%= review.id %>" style="font-weight: 500; color: var(--primary-color); text-decoration: none;">
+                <%= review.bookTitle %>
+              </a>
+            </td>
+            <td><%= review.authorName %></td>
+            <td>
+              <span class="rating-badge" style="padding: 0.25rem 0.75rem; font-size: 0.875rem;">
+                <%= review.rating %>/5
+              </span>
+            </td>
+            <td><%= review.user ? review.user.username : 'Guest' %></td>
+            <td><small class="text-muted"><%= review.reviewDate.toLocaleDateString() %></small></td>
+            <td>
+              <a class="btn btn-sm btn-outline-primary" href="/reviews/<%= review.id %>/edit">Edit</a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+<% } %>
+` }) %>

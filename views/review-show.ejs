@@ -1,0 +1,34 @@
+<%- include('layout', { body: `
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title"><%= review.bookTitle %></h2>
+        <p class="card-text">
+          <strong>Author:</strong> <%= review.authorName %>
+        </p>
+        <p class="card-text">
+          <strong>Rating:</strong> <span class="rating-badge"><%= review.rating %>/5 ⭐</span>
+        </p>
+        <p class="card-text">
+          <strong>Reviewer:</strong> <%= review.user ? review.user.username : 'Unknown' %>
+        </p>
+        <p class="card-text">
+          <strong>Favorite Genre:</strong> <%= review.user ? review.user.favoriteGenre : 'N/A' %>
+        </p>
+        <hr />
+        <p class="card-text"><strong>Review:</strong></p>
+        <p class="card-text" style="font-style: italic; color: #555;"><%= review.reviewText %></p>
+        <p class="card-text"><small class="text-muted">Reviewed on <%= review.reviewDate.toLocaleDateString() %></small></p>
+        <div class="d-flex gap-2 mt-4">
+          <a class="btn btn-secondary" href="/reviews">Back to Reviews</a>
+          <a class="btn btn-primary" href="/reviews/<%= review.id %>/edit">Edit</a>
+          <form action="/reviews/<%= review.id %>?_method=DELETE" method="POST" class="d-inline">
+            <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+` }) %>

@@ -1,0 +1,38 @@
+<%- include('layout', { body: `
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">📖 Create Account</h2>
+        <p class="text-muted mb-4">Join our book review community</p>
+        <form action="/register" method="POST" class="needs-validation" novalidate>
+          <div class="mb-3">
+            <label class="form-label">Username <span style="color: red;">*</span></label>
+            <input type="text" name="username" class="form-control" placeholder="Choose a username" required>
+            <div class="invalid-feedback">Username is required.</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Password <span style="color: red;">*</span></label>
+            <input type="password" name="password" class="form-control" placeholder="Enter a strong password" required>
+            <div class="invalid-feedback">Password is required.</div>
+            <small class="form-text text-muted">Password will be securely encrypted.</small>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Favorite Genre <span style="color: red;">*</span></label>
+            <input type="text" name="favoriteGenre" class="form-control" placeholder="e.g., Science Fiction, Mystery..." required>
+            <div class="invalid-feedback">Favorite genre is required.</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Bio <span style="color: red;">*</span></label>
+            <textarea name="bio" class="form-control" rows="4" placeholder="Tell us about yourself as a book lover..." required></textarea>
+            <div class="invalid-feedback">Bio is required.</div>
+          </div>
+          <% if (error) { %><div class="alert alert-danger alert-dismissible fade show" role="alert"><%= error %><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div><% } %>
+          <button class="btn btn-primary w-100" type="submit">Create Account</button>
+          <p class="text-center mt-3">Already have an account? <a href="/login">Login here</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+` }) %>
